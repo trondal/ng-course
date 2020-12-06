@@ -4,10 +4,20 @@ import { IntroPageComponent } from 'src/app/pages/intro-page/intro-page.componen
 import { QuestionPageComponent } from 'src/app/pages/question-page/question-page.component';
 import { ResultPageComponent } from 'src/app/pages/result-page/result-page.component';
 
+// https://levelup.gitconnected.com/ngrx-and-angular-route-guards-a3fc3d5255f8
 const routes: Routes = [
-  { path: 'intro', component: IntroPageComponent },
-  { path: 'question/:id', component: QuestionPageComponent },
-  { path: 'result', component: ResultPageComponent },
+  {
+    path: 'intro',
+    component: IntroPageComponent,
+  },
+  {
+    path: 'question/:id',
+    component: QuestionPageComponent,
+  },
+  {
+    path: 'result',
+    component: ResultPageComponent,
+  },
 ];
 
 @NgModule({

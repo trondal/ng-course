@@ -1,4 +1,4 @@
-<nav>
+<!-- <nav>
   <ul>
     <li>
       <a routerLink="/intro" routerLinkActive="active">Intro</a>
@@ -9,4 +9,19 @@
     </li>
   </ul>
 </nav>
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> -->
+
+<h2>Books</h2>
+<app-book-list
+  class="book-list"
+  [books]="books$ | async"
+  (add)="onAdd($event)"
+></app-book-list>
+
+<h2>My Collection</h2>
+<app-book-collection
+  class="book-collection"
+  [books]="bookCollection$ | async"
+  (remove)="onRemove($event)"
+>
+</app-book-collection>
