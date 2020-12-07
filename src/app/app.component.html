@@ -13,6 +13,7 @@
 
 <h2>Books</h2>
 <app-book-list
+  *ngIf="books$ !== null"
   class="book-list"
   [books]="books$ | async"
   (add)="onAdd($event)"

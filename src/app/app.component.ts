@@ -3,7 +3,9 @@ import { Store, select } from '@ngrx/store';
 import { selectBookCollection, selectBooks } from './state/books.selectors';
 import { retrievedBookList, addBook, removeBook } from './state/books.actions';
 import { GoogleBooksService } from './book-list/books.service';
-import { Observable } from 'rxjs';
+import { Book } from 'src/app/book-list/books.model';
+import * as BookActions from './state/books.actions';
+import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-root',
@@ -16,19 +18,24 @@ export class AppComponent implements OnInit {
   books$ = this.store.pipe(select(selectBooks));
   bookCollection$ = this.store.pipe(select(selectBookCollection));
 
-  constructor(private booksService: GoogleBooksService, private store: Store) {}
+  constructor(
+    private booksService: GoogleBooksService,
+    private store: Store<AppState>
+  ) {
+    const foo = select(selectBooks);
+  }
 
-  onAdd(bookId: any) {
+  onAdd(bookId: any): void {
     this.store.dispatch(addBook({ bookId }));
   }
 
-  onRemove(bookId: any) {
+  onRemove(bookId: any): void {
     this.store.dispatch(removeBook({ bookId }));
   }
 
-  ngOnInit() {
-    this.booksService
-      .getBooks()
-      .subscribe((Book) => this.store.dispatch(retrievedBookList({ Book })));
+  ngOnInit(): void {
+    this.booksService.getBooks().subscribe((Books) => {
+      return this.store.dispatch(retrievedBookList({ Books }));
+    });
   }
 }

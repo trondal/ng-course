@@ -13,7 +13,7 @@ import { Question } from 'src/app/interfaces/question.interface';
 })
 export class QuestionPageComponent implements OnInit {
   question: Question | undefined;
-  id: number = 0;
+  id = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,11 +35,11 @@ export class QuestionPageComponent implements OnInit {
       .subscribe(); */
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.subscribe((params) => {
       // (+) converts string 'id' to a number
       this.id = +params['id'];
-      this.question = this.courseService.getQuestion(this.id);
+      this.question = this.courseService.getQuestion(this.id as number);
       console.log(this.question);
     });
   }
