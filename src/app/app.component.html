@@ -12,17 +12,18 @@
 <router-outlet></router-outlet> -->
 
 <h2>Books</h2>
-<app-book-list
-  *ngIf="books$ !== null"
-  class="book-list"
-  [books]="books$ | async"
+<app-lesson-list
+  *ngIf="lessons$ | async as lessons"
+  class="lesson-list"
+  [lessons]="lessons"
   (add)="onAdd($event)"
-></app-book-list>
+></app-lesson-list>
 
 <h2>My Collection</h2>
-<app-book-collection
-  class="book-collection"
-  [books]="bookCollection$ | async"
+<app-lesson-collection
+  *ngIf="lessonCollection$ | async as lessonCollection"
+  class="lesson-collection"
+  [lessons]="lessonCollection"
   (remove)="onRemove($event)"
 >
-</app-book-collection>
+</app-lesson-collection>

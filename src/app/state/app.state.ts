@@ -1,6 +1,6 @@
-import { Book } from '../book-list/books.model';
+import { Lesson } from '../interfaces/lesson.interface';
 
 export interface AppState {
-  books: Book[];
+  lessons: Lesson[];
   collection: string[];
 }

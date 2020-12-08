@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from 'src/app/services/course.service';
+import { LessonService } from 'src/app/services/lesson.service';
 
 import { switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -18,7 +18,7 @@ export class QuestionPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private courseService: CourseService
+    private courseService: LessonService
   ) {
     /* this.question$ = this.route.paramMap
       .pipe(
@@ -39,8 +39,8 @@ export class QuestionPageComponent implements OnInit {
     this.route.params.subscribe((params) => {
       // (+) converts string 'id' to a number
       this.id = +params['id'];
-      this.question = this.courseService.getQuestion(this.id as number);
-      console.log(this.question);
+      // this.question = this.courseService.getQuestion(this.id as number);
+      console.log(this.id);
     });
   }
 }
