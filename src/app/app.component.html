@@ -11,7 +11,7 @@
 </nav>
 <router-outlet></router-outlet> -->
 
-<h2>Books</h2>
+<h2>Kurs</h2>
 <app-lesson-list
   *ngIf="lessons$ | async as lessons"
   class="lesson-list"
@@ -19,7 +19,7 @@
   (add)="onAdd($event)"
 ></app-lesson-list>
 
-<h2>My Collection</h2>
+<h2>Valgt kurs</h2>
 <app-lesson-collection
   *ngIf="lessonCollection$ | async as lessonCollection"
   class="lesson-collection"

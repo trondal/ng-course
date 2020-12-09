@@ -1,7 +1,9 @@
 [
   {
     "id": 1,
-    "name": "Maths",
+    "name": "matte",
+    "displayName": "Mathematics 101",
+    "language": "en",
     "questions": [
       {
         "id": 1,
@@ -27,7 +29,9 @@
   },
   {
     "id": 2,
-    "name": "Physics",
+    "name": "fysikk",
+    "displayName": "Physics 101",
+    "language": "no",
     "questions": [
       {
         "id": 1,
@@ -48,6 +52,34 @@
       {
         "id": 5,
         "name": "Physics Question 5"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "matte",
+    "displayName": "Matematikk 101",
+    "language": "no",
+    "questions": [
+      {
+        "id": 1,
+        "name": "Matte Spørsmål 1"
+      },
+      {
+        "id": 2,
+        "name": "Matte Spørsmål 2"
+      },
+      {
+        "id": 3,
+        "name": "Matte Spørsmål 3"
+      },
+      {
+        "id": 4,
+        "name": "Matte Spørsmål 4"
+      },
+      {
+        "id": 5,
+        "name": "Matte Spørsmål 5"
       }
     ]
   }

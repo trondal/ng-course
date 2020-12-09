@@ -1,7 +1,10 @@
-<div class="lesson-item" *ngFor="let lesson of lessons">
-  <p>Id: {{ lesson.id }}</p>
-  <span>Name: {{ lesson.name }}</span>
-  <button (click)="add.emit(lesson.id)" data-test="add-button">
-    Add to Collection
-  </button>
-</div>
+<ul>
+  <li *ngFor="let lesson of lessons">
+    <span>Id: {{ lesson.id }} </span>
+    <span>Navn: {{ lesson.name }}</span>
+    <span>Språk: {{ lesson.language }} </span>
+    <button (click)="add.emit(lesson.id)" data-test="add-button">
+      Velg kurs
+    </button>
+  </li>
+</ul>

@@ -1,7 +1,9 @@
-<div class="lesson-item" *ngFor="let lesson of lessons">
-  <p>{{ lesson.id }}</p>
-  <span> by {{ lesson.name }}</span>
-  <button (click)="remove.emit(lesson.id)" data-test="remove-button">
-    Remove from Collection
-  </button>
-</div>
+<ul>
+  <li *ngFor="let lesson of lessons">
+    <span>Id: {{ lesson.id }} </span>
+    <span> Navn: {{ lesson.name }} </span>
+    <button (click)="remove.emit(lesson.id)" data-test="remove-button">
+      Fjern valgt
+    </button>
+  </li>
+</ul>

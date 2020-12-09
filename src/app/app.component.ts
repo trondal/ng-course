@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.lessonService.getLessons().subscribe((Lessons) => {
-      console.log(Lessons);
       return this.store.dispatch(retrievedLessonList({ Lessons }));
     });
   }
