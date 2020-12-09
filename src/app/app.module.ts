@@ -15,6 +15,10 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { LessonCollectionComponent } from 'src/app/lesson-collection/lesson-collection.component';
 import { LessonListComponent } from 'src/app/lesson-list/lesson-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DemoMaterialModule } from 'src/app/material.module';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -27,8 +31,13 @@ import { LessonListComponent } from 'src/app/lesson-list/lesson-list.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    DemoMaterialModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
     StoreModule.forRoot({
       lessons: lessonsReducer,
       collection: collectionReducer,
