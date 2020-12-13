@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ensure } from 'src/app/utilities/ensure';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
@@ -10,6 +9,6 @@ export class LocalStorageService {
   }
 
   getSavedState(localStorageKey: string): any {
-    return JSON.parse(ensure(localStorage.getItem(localStorageKey)));
+    return JSON.parse(localStorage.getItem(localStorageKey));
   }
 }

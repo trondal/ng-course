@@ -1,6 +1,6 @@
 import { ActionReducer, Action } from '@ngrx/store';
 import { merge, pick } from 'lodash-es';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { LocalStorageService } from './local-storage.service';
 
 export function storageMetaReducer<S, A extends Action = Action>(
   saveKeys: string[],
@@ -10,7 +10,7 @@ export function storageMetaReducer<S, A extends Action = Action>(
   let onInit = true; // after load/refresh…
   return function (reducer: ActionReducer<S, A>) {
     return function (state: S, action: A): S {
-      // get the next state.
+      // get to the nextState.
       const nextState = reducer(state, action);
       // init the application state.
       if (onInit) {
