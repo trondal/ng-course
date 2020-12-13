@@ -11,7 +11,7 @@ import { ResultPageComponent } from './pages/result-page/result-page.component';
 
 import { lessonsReducer } from './state/lessons.reducer';
 import { collectionReducer } from './state/collection.reducer';
-import { StoreModule } from '@ngrx/store';
+import { MetaReducer, META_REDUCERS, StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { LessonCollectionComponent } from 'src/app/lesson-collection/lesson-collection.component';
 import { LessonListComponent } from 'src/app/lesson-list/lesson-list.component';
@@ -19,6 +19,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemoMaterialModule } from 'src/app/material.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { storageMetaReducer } from 'src/app/state/storage.metareducer';
+import { LocalStorageService } from 'src/app/state/local-storage.service';
+import { ROOT_LOCAL_STORAGE_KEY, ROOT_STORAGE_KEYS } from 'src/app/app.tokens';
+
+export function getMetaReducers(
+  saveKeys: string,
+  localStorageKey: string,
+  storageService: LocalStorageService
+): MetaReducer<any>[] {
+  return [storageMetaReducer(saveKeys, localStorageKey, storageService)];
+}
 
 @NgModule({
   declarations: [
@@ -38,16 +49,22 @@ import { MatNativeDateModule } from '@angular/material/core';
     DemoMaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({
-      lessons: lessonsReducer,
-      collection: collectionReducer,
-    }),
+    StoreModule.forRoot(reducers),
+
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [],
+  providers: [
+    { provide: ROOT_STORAGE_KEYS, useValue: ['layout.theme'] },
+    { provide: ROOT_LOCAL_STORAGE_KEY, useValue: '__app_storage__' },
+    {
+      provide: META_REDUCERS,
+      deps: [ROOT_STORAGE_KEYS, ROOT_LOCAL_STORAGE_KEY, LocalStorageService],
+      useFactory: getMetaReducers,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

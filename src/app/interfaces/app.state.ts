@@ -1,4 +1,4 @@
-import { Lesson } from '../interfaces/lesson.interface';
+import { Lesson } from './lesson.interface';
 
 export interface AppState {
   lessons: Lesson[];
