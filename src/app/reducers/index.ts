@@ -1,19 +1,17 @@
-import {
-  ActionReducer,
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
-  MetaReducer
-} from '@ngrx/store';
-import { environment } from '../../environments/environment';
+import { ActionReducerMap, createSelector } from '@ngrx/store';
+import { AppTheme } from '../app.model';
+import * as fromLayout from './layout.reducer';
 
 export interface State {
-
+  layout: fromLayout.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
-
+  layout: fromLayout.reducer,
 };
 
-
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+export const layout = (state: any): fromLayout.State => state.layout;
+export const getActiveTheme = createSelector(
+  layout,
+  (state): AppTheme => state.theme
+);

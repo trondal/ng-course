@@ -1,3 +1,11 @@
+<div class="app-container" [ngClass]="(activeTheme$ | async).class">
+  <app-header
+    [themes]="appThemes"
+    (themeSelected)="themeSelected($event)"
+  ></app-header>
+  <router-outlet></router-outlet>
+</div>
+
 <!-- <nav>
   <ul>
     <li>
@@ -11,7 +19,7 @@
 </nav>
 <router-outlet></router-outlet> -->
 
-<h2>Kurs</h2>
+<!-- <h2>Kurs</h2>
 <app-lesson-list
   *ngIf="lessons$ | async as lessons"
   class="lesson-list"
@@ -26,4 +34,4 @@
   [lessons]="lessonCollection"
   (remove)="onRemove($event)"
 >
-</app-lesson-collection>
+</app-lesson-collection> -->

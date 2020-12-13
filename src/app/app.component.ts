@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import {
+import { Store } from '@ngrx/store';
+/* import {
   retrievedLessonList,
   addLesson,
   removeLesson,
 } from './state/lessons.actions';
-/* import { GoogleBooksService } from './book-list/books.service';
-import { Lesson } from 'src/app/interfaces/lesson.interface';
-import * as BookActions from './state/books.actions'; */
 import { AppState } from 'src/app/interfaces/app.state';
 import { LessonService } from 'src/app/services/lesson.service';
 import {
   selectLessonCollection,
   selectLessons,
-} from 'src/app/state/lessons.selectors';
+} from 'src/app/state/lessons.selectors'; */
+import { AppTheme, APP_THEMES } from 'src/app/app.model';
+import * as fromReducer from './reducers';
+import { Observable } from 'rxjs';
+import { SetActiveTheme } from 'src/app/actions/layout.action';
 
 @Component({
   selector: 'app-root',
@@ -22,16 +23,28 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'ng-course';
+  appThemes = APP_THEMES;
 
-  lessonCollection$ = this.store.pipe(select(selectLessonCollection));
-  lessons$ = this.store.pipe(select(selectLessons));
+  public activeTheme$: Observable<AppTheme>;
 
-  constructor(
+  constructor(private store: Store<fromReducer.State>) {}
+
+  public ngOnInit(): void {
+    this.activeTheme$ = this.store.select(fromReducer.getActiveTheme);
+  }
+
+  public themeSelected(theme: AppTheme) {
+    this.store.dispatch(new SetActiveTheme(theme));
+  }
+  //lessonCollection$ = this.store.pipe(select(selectLessonCollection));
+  //lessons$ = this.store.pipe(select(selectLessons));
+
+  /* constructor(
     private lessonService: LessonService,
     private store: Store<AppState>
-  ) {}
+  ) {} */
 
-  onAdd(lessonId: any): void {
+  /* onAdd(lessonId: any): void {
     this.store.dispatch(addLesson({ lessonId }));
   }
 
@@ -43,5 +56,5 @@ export class AppComponent implements OnInit {
     this.lessonService.getLessons().subscribe((Lessons) => {
       return this.store.dispatch(retrievedLessonList({ Lessons }));
     });
-  }
+  } */
 }
