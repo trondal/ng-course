@@ -17,7 +17,7 @@ export const selectLessonCollection = createSelector(
   selectCollectionState,
   (lessons: Lesson[], collection: string[]) => {
     return collection.map((id) =>
-      ensure(lessons.find((lesson) => lesson.id === id))
+      ensure(lessons.find((lesson) => lesson.id === +id))
     );
   }
 );

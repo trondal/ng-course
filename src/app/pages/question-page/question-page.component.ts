@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LessonService } from 'src/app/services/lesson.service';
 
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Question } from 'src/app/interfaces/question.interface';
+import { QuestionsService } from 'src/app/services/question.service';
 
 @Component({
   selector: 'app-question-page',
@@ -12,27 +13,27 @@ import { Question } from 'src/app/interfaces/question.interface';
   styleUrls: ['./question-page.component.scss'],
 })
 export class QuestionPageComponent implements OnInit {
-  question: Question | undefined;
+  //public readonly question$: Observable<Question>;
+  public readonly page$: Observable<number>;
+  public readonly length$: Observable<number>;
+  public readonly question$: Observable<Question>;
   id = 0;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private courseService: LessonService
+    private questionsService: QuestionsService
   ) {
-    /* this.question$ = this.route.paramMap
-      .pipe(
-        switchMap((params: ParamMap) => {
-          const id = params.get('id');
-          console.log('foooo');
-          if (!id) {
-            console.error('Could not find question');
-            throw new Error('Id not found :' + id);
-          }
-          return this.courseService.getQuestion(id);
-        })
-      )
-      .subscribe(); */
+    this.page$ = this.route.paramMap.pipe(
+      map((params: ParamMap) => {
+        const pageNumber = params.get('id');
+        if (pageNumber) {
+          return +pageNumber;
+        }
+        return 0;
+      })
+    );
+    this.question$ = this.questionsService.question$;
+    this.length$ = this.questionsService.length$;
   }
 
   ngOnInit(): void {

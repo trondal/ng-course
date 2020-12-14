@@ -22,14 +22,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { storageMetaReducer } from 'src/app/state/storage.metareducer';
 import { LocalStorageService } from 'src/app/state/local-storage.service';
 import { ROOT_LOCAL_STORAGE_KEY, ROOT_STORAGE_KEYS } from 'src/app/app.tokens';
+import { QuestionsService } from 'src/app/services/question.service';
 
-export function getMetaReducers(
+/*export function getMetaReducers(
   saveKeys: string,
   localStorageKey: string,
   storageService: LocalStorageService
 ): MetaReducer<any>[] {
   return [storageMetaReducer(saveKeys, localStorageKey, storageService)];
-}
+}*/
 
 @NgModule({
   declarations: [
@@ -49,21 +50,22 @@ export function getMetaReducers(
     DemoMaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(reducers),
+    // StoreModule.forRoot(reducers),
 
-    StoreDevtoolsModule.instrument({
+    /* StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
-    }),
+    }), */
   ],
   providers: [
-    { provide: ROOT_STORAGE_KEYS, useValue: ['layout.theme'] },
+    QuestionsService,
+    /* { provide: ROOT_STORAGE_KEYS, useValue: ['layout.theme'] },
     { provide: ROOT_LOCAL_STORAGE_KEY, useValue: '__app_storage__' },
     {
       provide: META_REDUCERS,
       deps: [ROOT_STORAGE_KEYS, ROOT_LOCAL_STORAGE_KEY, LocalStorageService],
       useFactory: getMetaReducers,
-    },
+    }, */
   ],
   bootstrap: [AppComponent],
 })

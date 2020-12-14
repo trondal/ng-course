@@ -20,18 +20,16 @@ import {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'ng-course';
 
-  lessonCollection$ = this.store.pipe(select(selectLessonCollection));
-  lessons$ = this.store.pipe(select(selectLessons));
+  // lessonCollection$ = this.store.pipe(select(selectLessonCollection));
+  // lessons$ = this.store.pipe(select(selectLessons));
 
-  constructor(
-    private lessonService: LessonService,
-    private store: Store<AppState>
-  ) {}
+  constructor() // private store: Store<AppState> // private lessonService: LessonService,
+  {}
 
-  onAdd(lessonId: any): void {
+  /* onAdd(lessonId: any): void {
     this.store.dispatch(addLesson({ lessonId }));
   }
 
@@ -43,5 +41,5 @@ export class AppComponent implements OnInit {
     this.lessonService.getLessons().subscribe((Lessons) => {
       return this.store.dispatch(retrievedLessonList({ Lessons }));
     });
-  }
+  } */
 }

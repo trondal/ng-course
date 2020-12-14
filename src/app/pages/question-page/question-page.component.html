@@ -1,2 +1,4 @@
-<p>question-page works!</p>
-<code>{{ question | json }}</code>
+<div *ngIf="question$ | async as question">
+  <p>question-page works!</p>
+  <code>{{ question | json }}</code>
+</div>
